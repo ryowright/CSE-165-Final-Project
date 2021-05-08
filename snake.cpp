@@ -1,5 +1,6 @@
 #include <QPainter>
 #include <QTime>
+#include <QRandomGenerator>
 #include "snake.h"
 
 Snake::Snake(QWidget *parent) : QWidget(parent) {
@@ -147,12 +148,12 @@ void Snake::checkCollision() {
 void Snake::locateApple() {
 
     QTime time = QTime::currentTime();
-    qsrand((uint) time.msec());
+    QRandomGenerator generator((uint) time.msec());
 
-    int r = qrand() % RAND_POS;
+    int r = generator.generate() % RAND_POS;
     apple_x = (r * DOT_SIZE);
 
-    r = qrand() % RAND_POS;
+    r = generator.generate() % RAND_POS;
     apple_y = (r * DOT_SIZE);
 }
 
